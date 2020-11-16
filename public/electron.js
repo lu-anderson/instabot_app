@@ -15,7 +15,7 @@ function createWindow () {
       enableRemoteModule: true,
       nodeIntegrationInWorker: true
     }
-  })  
+  })
   mainPage.removeMenu()
 
   mainPage.loadURL( isDev ? 'http://localhost:3000/': `file://${path.resolve(__dirname, '..', 'build', 'index.html' )}`)
@@ -29,7 +29,7 @@ app.whenReady().then(createWindow)
 
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
-  // No macOS é comum para aplicativos e sua barra de menu 
+  // No macOS é comum para aplicativos e sua barra de menu
   // permaneçam ativo até que o usuário explicitamente encerre com Cmd + Q
   if (process.platform !== 'darwin') {
     app.quit()

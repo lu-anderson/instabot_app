@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+import ButtonComponent from '../../Components/Button'
+
 export const Container = styled.main`
 	display: flex;
 	height: 100vh;
@@ -19,16 +21,11 @@ export const RowHead = styled(Row)`
 export const Cell = styled.div`
 	width: 100%;
 	padding: 5px;
-	border: 1px solid red;
 	overflow: hidden; //Trocar por scroll
 	text-align: center;
+	border-right: 1px solid;
 `
-export const ProxyConfig = styled(Cell)`
-	cursor: pointer;
+export const ProxyConfig = styled(ButtonComponent)`
+	width: 100%;
 
-	&:hover {
-		border: none;
-		z-index: 1;
-		box-shadow: 0px 10px 15px 5px rgba(0,0,0,0.79)
-	}
 `
