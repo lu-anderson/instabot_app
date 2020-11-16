@@ -1,16 +1,23 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
+import { ThemeProvider } from 'styled-components'
+import { darkTheme } from './Theme';
 
-import NavBar from './components/Navbar'
+
+import EditAccounts from './Pages/EditAccounts'
+import { GlobalStyles } from './GlobalStyles';
 
 function App() {
 	return (
-		<Router>
-			<Route path="/">
-				<NavBar />
-			</Route>
-		</Router>
+		<ThemeProvider theme={darkTheme}>
+			<GlobalStyles />
+			<Router>
+				<Route path="/">
+					<EditAccounts />
+				</Route>
+			</Router>
+		</ThemeProvider>
 	);
 }
 
