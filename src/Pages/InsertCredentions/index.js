@@ -1,9 +1,8 @@
 import React, { useRef } from 'react'
 
 const { remote } = window.require('electron')
+const {dizu} = require('../../localforage.js')
 const getInfoDizu = remote.require('../backend/getInfoDizu.js')
-//C:\Users\lu-an\Desktop\Programming\instabot\backend\getInfoDizu.js
-//const getInfoDizu = remote.require('./backend/getInfoDizu.js')
 
 function InsertCredentions(){
 	const ref = useRef(null)
@@ -14,13 +13,14 @@ function InsertCredentions(){
 		ref.current.innerHTML += "<pre>"+data+"</pre>"
 	}
 
-	const outro = data => {
-		ref.current.innerHTML += "<div>"+data+"</div>"
-	}
 
-	const start = () => {
+	const start = async () => {
 		console.log('start')
-		getInfoDizu(writeStdout, writeStdout, 'lu-anderson1@hotmail.com', 'Cfx2j45152020', false, outro)
+		const data = await getInfoDizu(writeStdout, writeStdout, 'lu-anderson1@hotmail.com', 'Cfx2j45152020', false)
+		const profiles = data.map(profile => (
+			{user: profile, password: undefined, proxy: {}}
+		))
+		await dizu.setItem('profiles', profiles)
 
 	}
 

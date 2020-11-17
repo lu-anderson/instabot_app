@@ -15,11 +15,13 @@ function App() {
 			<GlobalStyles />
 			<Router>
 				<Route exact path="/">
-					<InsertCredentions />
+					{/* <InsertCredentions /> */}
+					<EditAccounts />
 				</Route>
 
 				<Route path="/edit">
-					<EditAccounts />
+					<InsertCredentions />
+
 				</Route>
 			</Router>
 		</ThemeProvider>

@@ -1,5 +1,7 @@
 import React from 'react'
 
+
+import Modal from './index'
 import Button from '../../../Components/Button'
 import {
 	Background,
@@ -9,15 +11,14 @@ import {
 	Input
 } from './styles'
 
-const ProxyModal = React.forwardRef(({ visible, onHost, hostValue }, ref) => {
+const ProxyPerso = (refProxyModal, showModal) => {
 
 	return (
-
-		<Background ref={ref} visible={visible}>
+		<Modal ref={refProxyModal} visible={showModal}>
 			<Container>
 				<InputContainer>
 					<Label>Host:</Label>
-					<Input value={hostValue} onChange={onHost}/>
+					<Input />
 				</InputContainer>
 
 				<InputContainer>
@@ -37,9 +38,8 @@ const ProxyModal = React.forwardRef(({ visible, onHost, hostValue }, ref) => {
 				<p>Se o login for por ip, não coloque nada em 'Login' e 'Senha'</p>
 				<Button>Salvar</Button>
 			</Container>
-		</Background>
+		</Modal>
 	)
-})
+}
 
-
-export default ProxyModal
+export default ProxyPerso
