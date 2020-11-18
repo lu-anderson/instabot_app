@@ -1,7 +1,10 @@
 import styled from 'styled-components'
 
+import ButtonComponent from '../../../Components/Button'
+
+
 export const Background = styled.div`
-	display: ${({visible}) => visible ? 'blokc': 'none'};
+	display: ${({ visible }) => visible ? 'blokc' : 'none'};
 	position: fixed;
 	z-index: 2;
 	padding-top: 100px;
@@ -16,23 +19,23 @@ export const Background = styled.div`
 `
 
 export const Container = styled.div`
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	background-color: ${({theme}) => theme.body};
+	display: flex;
+	flex-direction: column;
+	background-color: ${({ theme }) => theme.body};
 	margin: auto;
 	padding: 20px;
 	border: 1px solid #888;
 	border-radius: 10px;
 	width: 50%;
-
-	@media (max-width: 970px) {
-		grid-template-columns: 1fr;
-	}
 `
 //export const S
 
 export const InputContainer = styled.div`
 	display: flex;
+	flex-direction: row;
+	@media (max-width: 970px) {
+		grid-template-columns: 1fr;
+	}
 `
 export const Label = styled.label`
 	flex: 1;
@@ -42,11 +45,20 @@ export const Input = styled.input`
 	margin-right: 10px;
 	border: none;
 	outline: none;
-	border-bottom: 1px solid ${({theme}) => theme.text};
-	color: ${({theme}) => theme.text};
-	background-color: ${({theme}) => theme.body};
+	border-bottom: 1px solid ${({ theme }) => theme.text};
+	color: ${({ theme }) => theme.text};
+	background-color: ${({ theme }) => theme.body};
 `
 
+export const ButtonContainer = styled.div`
+	display: flex;
+	flex: 1;
+	margin-top: 15px;
+	justify-content: flex-end;
+`
+export const Button = styled(ButtonComponent)`
+
+`
 
 
 

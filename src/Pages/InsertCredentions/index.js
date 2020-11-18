@@ -18,7 +18,7 @@ function InsertCredentions(){
 		console.log('start')
 		const data = await getInfoDizu(writeStdout, writeStdout, 'lu-anderson1@hotmail.com', 'Cfx2j45152020', false)
 		const profiles = data.map(profile => (
-			{user: profile, password: undefined, proxy: {}}
+			{user: profile, password: undefined, proxy: {host: '', port: '', username: '', password: ''}}
 		))
 		await dizu.setItem('profiles', profiles)
 

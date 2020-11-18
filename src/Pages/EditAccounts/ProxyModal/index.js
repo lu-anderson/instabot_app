@@ -1,41 +1,49 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import styled from 'styled-components'
 
-import Button from '../../../Components/Button'
+
 import {
 	Background,
 	Container,
 	InputContainer,
 	Label,
-	Input
+	Input,
+	ButtonContainer,
+	Button
 } from './styles'
 
-const ProxyModal = React.forwardRef(({ visible, onHost, hostValue }, ref) => {
+const ProxyModal = React.forwardRef((props, ref) => {
+
 
 	return (
 
-		<Background ref={ref} visible={visible}>
+		<Background ref={ref} visible={props.visible}>
 			<Container>
 				<InputContainer>
-					<Label>Host:</Label>
-					<Input value={hostValue} onChange={onHost}/>
-				</InputContainer>
-
-				<InputContainer>
+					<Label>Host: </Label>
+					<Input
+						value={props.hostValue}
+						onChange={(e) => props.onchange(e, 'host')}
+					/>
 					<Label>Porta: </Label>
-					<Input />
+					<Input value={props.portValue}
+						onChange={(e) => props.onchange(e, 'port')}
+					/>
 				</InputContainer>
 
 				<InputContainer>
 					<Label>Login: </Label>
-					<Input />
-				</InputContainer>
-
-				<InputContainer>
+					<Input
+						value={props.loginValue}
+						onChange={(e) => props.onchange(e, 'username')} />
 					<Label>Senha: </Label>
-					<Input />
+					<Input value={props.passwordValue} onChange={(e) => props.onchange(e, 'password')} />
 				</InputContainer>
-				<p>Se o login for por ip, não coloque nada em 'Login' e 'Senha'</p>
-				<Button>Salvar</Button>
+				<br/>
+				<small>Se o login for por ip, não coloque nada em 'Login' e 'Senha'</small>
+				<ButtonContainer>
+					<Button>Fechar</Button>
+				</ButtonContainer>
 			</Container>
 		</Background>
 	)

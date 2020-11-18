@@ -26,9 +26,6 @@ export const Cell = styled.div`
 	border-right: 1px solid;
 `
 export const Input = styled.input`
-
-
-	border: ${ props => props.isEmpty ? '2px solid red' : 'none'};
 `
 export const ProxyConfig = styled(ButtonComponent)`
 	width: 100%;

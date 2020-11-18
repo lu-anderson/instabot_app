@@ -5,8 +5,7 @@ const ButtonStyled = styled.button`
 	border: none;
 	outline: none;
 	cursor: pointer;
-	width: 70px;
-	height: 30px;
+	padding: 5px 10px;
 	background-color: ${({theme}) => theme.background};
 
 	&:hover {

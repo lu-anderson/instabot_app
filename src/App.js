@@ -8,6 +8,9 @@ import { darkTheme, lightTheme } from './Theme';
 
 import EditAccounts from './Pages/EditAccounts'
 import InsertCredentions from './Pages/InsertCredentions'
+import Menu from './Pages/Menu'
+import Main from './Pages/Main'
+import Configs from './Pages/Configs'
 
 function App() {
 	return (
@@ -15,13 +18,20 @@ function App() {
 			<GlobalStyles />
 			<Router>
 				<Route exact path="/">
-					{/* <InsertCredentions /> */}
+					<Menu />
+				</Route>
+				<Route exact path="/edit_accounts">
 					<EditAccounts />
 				</Route>
 
-				<Route path="/edit">
+				<Route path="/get_profiles">
 					<InsertCredentions />
-
+				</Route>
+				<Route path="/main">
+					<Main />
+				</Route>
+				<Route path="/configs">
+					<Configs />
 				</Route>
 			</Router>
 		</ThemeProvider>

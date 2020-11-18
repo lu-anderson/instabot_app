@@ -26,7 +26,7 @@ function EditAccounts() {
 	}
 
 	const [profiles, setProfiles] = useState([])
-	const [indexProxySeleted, setIndexProxySeleted] = useState(null)
+	const [indexProxySeleted, setIndexProxySeleted] = useState(0)
 
 	useEffect(() => {
 		async function getItem() {
@@ -40,30 +40,23 @@ function EditAccounts() {
 	useEffect(() => {
 		console.log(profiles)
 	}, [profiles])
+	useEffect(() => {
+		console.log(indexProxySeleted)
+		if(profiles[indexProxySeleted]){
+			console.log(profiles[indexProxySeleted].proxy)
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [indexProxySeleted])
 
 	const handlePasswords = (e, index) => {
 		const newProfiles = [...profiles]
 		newProfiles[index].password = e.target.value
 		setProfiles(newProfiles)
 	}
-	const handleLoginProxy = (e, index) => {
+
+	const handleProxy = (e, index, type) => {
 		const newProfiles = [...profiles]
-		newProfiles[index].proxy.username = e.target.value
-		setProfiles(newProfiles)
-	}
-	const handlePasswordProxy = (e, index) => {
-		const newProfiles = [...profiles]
-		newProfiles[index].proxy.password = e.target.value
-		setProfiles(newProfiles)
-	}
-	const handleHostProxy = (e, index) => {
-		const newProfiles = [...profiles]
-		newProfiles[index].proxy.host = e.target.value
-		setProfiles(newProfiles)
-	}
-	const handlePortProxy = (e, index) => {
-		const newProfiles = [...profiles]
-		newProfiles[index].proxy.port = e.target.value
+		newProfiles[index].proxy[type] = e.target.value
 		setProfiles(newProfiles)
 	}
 
@@ -71,17 +64,19 @@ function EditAccounts() {
 		dizu.setItem('profiles', profiles)
 	}
 
+	const selectProxy = (index) => {
+		setIndexProxySeleted(index)
+		setShowModal(true)
+	}
+
 	return (
 		<Container>
 			<ProxyModal ref={refProxyModal} visible={showModal}
-				onHost={(e) => handleHostProxy(e, indexProxySeleted)}
-				hostValue={(indexProxySeleted !== null) ? profiles[indexProxySeleted].proxy.host : '' }
-				/*onPort={}
-				portValue={}
-				onLogin={}
-				loginValue={}
-				onPassword={}
-				passwordValue={} */
+				onchange={(e, type) => handleProxy(e, indexProxySeleted, type)}
+				hostValue={profiles[indexProxySeleted] ? profiles[indexProxySeleted].proxy.host : ''}
+				portValue={profiles[indexProxySeleted] ? profiles[indexProxySeleted].proxy.port : ''}
+				loginValue={profiles[indexProxySeleted] ? profiles[indexProxySeleted].proxy.username : ''}
+				passwordValue={profiles[indexProxySeleted] ? profiles[indexProxySeleted].proxy.password : ''}
 			/>
 			<TableBody>
 				<RowHead>
@@ -101,7 +96,7 @@ function EditAccounts() {
 
 						</Cell>
 						<Cell>
-							<ProxyConfig onClick={() => {setShowModal(true); setIndexProxySeleted(index)}}>
+							<ProxyConfig onClick={() => selectProxy(index)}>
 								Config. Proxy
 						</ProxyConfig>
 						</Cell>
